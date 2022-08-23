@@ -1,0 +1,23 @@
+﻿New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+-Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+
+https://github.com/OmniSharp/omnisharp-roslyn/issues/2261
+
+HASH - cryptografia, utilizada para permitir que dados sensíveis não sejam obtidos. MD5 é é passível de decrypt, o melhor é usar o SHA 512.
+
+TOKEN - outro tipo de cryptografia que pode ser decryptada em json (header, payload, signature)
+
+
+PARA UTILIZAR O MIGRATION DEVEMOS
+
+ENTITYMAPEAMENTO
+Registrar o mapeamento
+Gerar Migration (que é um tipo de versionamento)
+Subir a aplicação
+
+para fazer o migration ler a documentação
+https://docs.microsoft.com/pt-br/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+
+instalar a ferramenta do dotnet ef core
+	dotnet tool install --global dotnet-ef
+

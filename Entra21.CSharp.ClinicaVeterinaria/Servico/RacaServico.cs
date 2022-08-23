@@ -5,13 +5,13 @@ using Entra21.CSharp.ClinicaVeterinaria.Servico.ViewModels;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Servico
 {
-    // A classe RacaServico irá implementar a interface IRacaServico,
-    // ou seja, devera honrar as clausulas definidos na interface(contrato)
+        /* A classe RacaServico irá implementar a interface IRacaService,
+         ou seja, deverá honrar as clausulas definidos na interface (contrato) */
+
     public class RacaServico : IRacaServico
     {
-        private IRacaRepositorio _racaRepositorio;
+        private readonly IRacaRepositorio _racaRepositorio;
 
-        // Construtor: construir o objeto de RacaServico com o minimo para a correta execução
         public RacaServico(ClinicaVeterinariaContexto contexto)
         {
             _racaRepositorio = new RacaRepositorio(contexto);
@@ -21,7 +21,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Servico
         {
             var raca = new Raca();
             raca.Id = racaEditarViewModel.Id;
-            raca.Nome = racaEditarViewModel.Nome;
+            raca.Nome = racaEditarViewModel.Nome.Trim();
             raca.Especie = racaEditarViewModel.Especie;
 
             _racaRepositorio.Atualizar(raca);

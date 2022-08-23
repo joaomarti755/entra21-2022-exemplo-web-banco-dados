@@ -1,4 +1,5 @@
 ﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Entidades;
+using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Mapeamentos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
@@ -15,9 +16,17 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // 3ª etapa migration: Registrar o mapeamento
+            modelBuilder.ApplyConfiguration(new RacaMapeamento());
+            /* 4ª etapa migration: Gerar a migration
+                dotnet ef migrations add NOMEMIGRATION --project Repositorio -- startup-project NOMEDOPROJETO
+            (por exemplo Entra21.CSharp.ClinicaVererinaria.Aplicacao) */
 
-            modelBuilder.Entity<Raca>().ToTable("racas");
+            /* 5ª etapa migration: A migration poderá ser aplicada de duas formas:
+                - executar o comando para aplicar a migration sem a necessidade de executar a aplicação
+                    dotnet ef database update
+                - executar a aplicação irá aplicar a migration */
+
         }
     }
 }
